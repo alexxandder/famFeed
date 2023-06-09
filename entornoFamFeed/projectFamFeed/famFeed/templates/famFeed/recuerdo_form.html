@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css">
+    <title>Nuevo Recuerdo Famfeed</title>
+    <style>
+        /*------------------------------------------------------------*/
+        /*GLOBALES*/
+        :root{
+            --fuente:'Montserrat', sans-serif;
+            --blanco:#ffffff;
+            --gris: #e1e1e1;
+            --negro: #000000;
+            --basico: #FCF2EA;
+            --primario:#FF9126;
+            --secundario:#AAD7D5; 
+            --primarioOscuro:#DB5933;
+            --secundarioOscuro:#58A9A2;
+            
+        }
+        html{
+            box-sizing: border-box;
+            font-size: 62.5%;
+            width: 100%;
+            height: 100%;
+        }
+        *, *:before, *:after{
+            box-sizing: inherit;
+        }
+        body{
+            font-family: var(--fuente);
+            font-size: 1.6rem;
+            line-height: 2;
+            margin:0px;
+            background-color: var(--basico);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        /*------------------------------------------------------------*/
+        /*CABECERA*/
+
+        header{
+            height: 20rem;
+            background-color: var(--secundario);
+        }
+        .titulo{
+            margin-top: 0;
+            color: var(--primario);
+            font-size: 10rem;
+            font-weight: lighter; 
+            text-align: center;
+        }
+        /*------------------------------------------------------------*/
+        /*CUERPO*/
+        h1{
+            color: var(--secundarioOscuro);
+            font-size: 50px;
+        }  
+        label{
+            color: var(--secundarioOscuro);
+            font-size: 25px;
+        }
+
+        input{
+            color: var(--secundarioOscuro);
+            margin: 1rem;
+            padding: 20px;
+            width: 50rem;
+            border: 0 solid ;
+            border-radius: 20px;
+            font-size: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .btnImg{
+            background-color: var(--secundario);
+            color: var(--primarioOscuro);
+            border: 0px solid ;
+            border-radius: 50px;
+            font-family: var(--fuente);
+            text-transform: uppercase;
+            width: 30rem;
+            font-size: 20px;
+        }
+        .login{
+            background-color: var(--primarioOscuro);
+            color: var(--basico);
+            border: 0px solid var(--secundario);
+            border-radius: 50px;
+            font-family: var(--fuente);
+            text-transform: uppercase;
+            width: 20rem;
+            font-size: 20px;
+        }
+        textarea{
+            color: var(--secundarioOscuro);
+            margin: 1rem;
+            padding: 20px;
+            width: 50rem;
+            border: 0 solid ;
+            border-radius: 20px;
+            font-size: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        /*------------------------------------------------------------*/
+        /*PIE DE PAGINA*/
+        footer{
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 5rem;
+            background-color: var(--secundario);
+            
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container">
+            <h1 class="navbar-brand titulo">FAMFEED</h1>
+          </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Nuevo Recuerdo</h1>
+
+        <div>
+            <form method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Crear Recuerdo</button>
+            </form>
+        </div>
+    </main>
+</body>
+
+</html> 

@@ -8,4 +8,5 @@ urlpatterns = [
     path('crearTablon/', TablonCreateView.as_view(), name='crearTablon'),
     path('detalle/<int:pk>', TablonDetailView.as_view(), name='detalle'),
     path('agregarUsuarioTablon/<int:pk>', views.AgregarUsuarioTablonView.as_view(), name='agregarUsuarioTablon'),
+    path('crearRecuerdo/<int:pk>', RecuerdoCreateView.as_view(), name='crearRecuerdo'),
 ]

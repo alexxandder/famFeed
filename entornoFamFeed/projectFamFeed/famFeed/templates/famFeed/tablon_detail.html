@@ -211,7 +211,7 @@
     <!--MENU-->
     <section>
         <div class="menu">
-            <div class="izquierda"><a href="recuerdos_form.html">Crear Nuevo Recuerdo</a></div>
+            <div class="izquierda"><a href="{% url 'crearRecuerdo' tablon.id %}">Crear Nuevo Recuerdo</a></div>
             <div class="derecha"><a href="#" onclick="toggleDivVisibility()">Usuario</a></div>
             <div id="usuarioDiv" style="display: none;">
                 <div>
@@ -237,23 +237,16 @@
         </div>
     
         <div class="grid-container">
-            <div class="grid-item">
-                <img src="img/chatgpt.png" alt="Tablon 1">
-                <h2><a href="recuerdos_detail.html">Chat GPT</a></h2>
-                
-            </div>
-            <div class="grid-item">
-                <img src="img/codigojs.png" alt="Tablon 2">
-                <h2><a href="#">Javascript</a></h2>                
-            </div>
-            <div class="grid-item">
-                <img src="img/pcgamer.png" alt="Tablon 3">
-                <h2><a href="#">SetUps</a></h2>                
-            </div>
-            <div class="grid-item">
-                <img src="img/ciberseguridad.png" alt="Tablon 4">
-                <h2><a href="#">Hacking ético</a></h2>                
-            </div> 
+            {% for recuerdo in recuerdos %}
+                <div class="grid-item">
+                    <a href="">
+                        <img src="/media/{{ recuerdo.imagenRecuerdo }}" alt="imagen">
+                        <h4 class="tituloTablon">Nombre del recuerdo: {{ recuerdo.titulo }}</h4>
+                        <p class="creadorTablon">Autor: {{ recuerdo.autor.username }}</p>
+                        <!-- Puedes acceder a otros atributos del recuerdo aquí -->
+                    </a>
+                </div>
+            {% endfor %}
         </div>
     </main>
 

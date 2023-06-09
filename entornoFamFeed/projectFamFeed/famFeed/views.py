@@ -3,7 +3,7 @@ from django.contrib.auth import logout
 from django.urls import reverse_lazy
 from django.views.decorators.cache import never_cache
 from .models import *
-from .forms import newTablonForm
+from .forms import *
 from django.views.generic.list import ListView
 from django.views.generic.edit import CreateView
 from django.views.generic import DetailView
@@ -50,8 +50,14 @@ class TablonDetailView(LoginRequiredMixin, DetailView):
     model = Tablon
     context_object_name = 'tablon'
     login_url = 'cuentas/login'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tablon = self.get_object()
+        context['recuerdos'] = tablon.recuerdos.all()
+        return context
 
 class AgregarUsuarioTablonView(LoginRequiredMixin, TemplateView):
+
     template_name = 'agregar_usuario_tablon.html'
     
     def post(self, request, pk):
@@ -73,3 +79,17 @@ class AgregarUsuarioTablonView(LoginRequiredMixin, TemplateView):
         tablon = Tablon.objects.get(id=tablon_id)
         context['tablon'] = tablon
         return context
+    
+class RecuerdoCreateView(LoginRequiredMixin, CreateView):
+
+    login_url = 'cuentas/login'
+    model = Recuerdo
+    form_class = newRecuerdoForm
+    success_url = reverse_lazy('principal')
+
+    def form_valid(self, form):
+        form.instance.autor = self.request.user
+        tablon_id = self.kwargs['pk']
+        form.instance.tablon_id = tablon_id 
+        recuerdo = form.save()
+        return super().form_valid(form)

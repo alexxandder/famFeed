@@ -11,3 +11,14 @@ class Tablon(models.Model):
     class Meta:
         verbose_name = 'tablon'
         verbose_name_plural = 'tablones'
+
+class Recuerdo(models.Model):
+    titulo = models.CharField(max_length=30)
+    imagenRecuerdo = models.ImageField(verbose_name='imagenRecuerdo', upload_to='famFeedRecuerdos', null=True)
+    texto = models.CharField(max_length=1000)
+    autor = models.ForeignKey(User, verbose_name='autor', on_delete=models.CASCADE)
+    tablon = models.ForeignKey(Tablon, related_name='recuerdos',on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'recuerdo'
+        verbose_name_plural = 'recuerdos'
