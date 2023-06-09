@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css">
+    <title>Tablones Famfeed</title>
+    <style>
+        /*------------------------------------------------------------*/
+        /*GLOBALES*/
+        :root{
+            --fuente:'Montserrat', sans-serif;
+            --blanco:#ffffff;
+            --gris: #e1e1e1;
+            --negro: #000000;
+            --basico: #FCF2EA;
+            --primario:#FF9126;
+            --secundario:#AAD7D5; 
+            --primarioOscuro:#DB5933;
+            --secundarioOscuro:#58A9A2;
+            
+        }
+        html{
+            box-sizing: border-box;
+            font-size: 62.5%;
+            width: 100%;
+            height: 100%;
+        }
+        *, *:before, *:after{
+            box-sizing: inherit;
+        }
+        body{
+            font-family: var(--fuente);
+            font-size: 1.6rem;
+            line-height: 2;
+            margin:0px;
+            background-color: var(--basico);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        /*------------------------------------------------------------*/
+        /*CABECERA*/
+
+        header{
+            height: 20rem;
+            background-color: var(--secundario);
+        }
+        .titulo{
+            margin-top: 0;
+            color: var(--primario);
+            font-size: 10rem;
+            font-weight: lighter; 
+            text-align: center;
+        }
+        /*------------------------------------------------------------*/
+        /*CUERPO*/
+        h1{
+            color: var(--secundarioOscuro);
+            font-size: 50px;
+        }
+        p{
+            color: var(--secundarioOscuro);
+            font-size: 30px;
+            margin: 20px;
+        }  
+        p{
+            color: var(--negro);
+            font-size: 20px;
+        } 
+        #usuarioDiv {
+            display: none;
+            background: var(--secundarioOscuro); /* Color de fondo */
+            position: absolute; /* Posición absoluta para aparecer debajo */
+            top: 26rem; /* Espacio desde la parte superior */
+            right: 0; /* Alineación a la izquierda */
+            width: 20rem; /* Ancho del div */
+            padding: 10px; /* Espacio interno */
+            box-sizing: border-box; /* Incluir el padding en el ancho total */
+            color: var(--primarioOscuro);
+        }  
+        h2{
+        text-align: center;
+        }
+        a{
+            text-decoration: none;
+            color: var(--primarioOscuro);
+            text-transform: uppercase;
+        } 
+        /*------------------------------------------------------------*/
+        /*CUERPO*/
+        .grid-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 10px;
+            margin-bottom: 10rem;
+        }
+
+        .grid-item {
+            background-color: var(--secundario);
+            padding: 20px;
+            display: flex;
+            text-align: center;
+        }
+        .grid-item img {
+            margin-right: 10px;
+        }
+        .grid-item h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        .btnUsuario{
+            background-color: var(--primarioOscuro);
+            color: var(--basico);
+            border: 0px solid var(--secundario);
+            border-radius: 50px;
+            font-family: var(--fuente);
+            text-transform: uppercase;
+            width: 20rem;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        img{
+        max-width: 50%;
+        }
+        /*------------------------------------------------------------*/
+        /*MENU*/
+        .menu {
+            display: flex;
+            justify-content: space-between;
+            background-color: var(--secundarioOscuro);
+            height: 8rem;
+            font-size: 24px;
+            padding: 2rem;
+            
+        }
+
+        .menu .izquierda {
+            margin-right: auto;
+        }
+
+        .menu .derecha {
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-end;
+        }  
+        /*------------------------------------------------------------*/
+        /*PIE DE PAGINA*/
+        footer{
+            margin-top: auto;
+            width: 100%;
+            height: 5rem;
+            background-color: var(--secundario);
+            
+        }
+    </style>
+</head>
+
+<body>
+    <!--CABECERA-->
+    {% if not request.user.is_authenticated %}
+        <a href="{% url 'login' %}">Login</a>
+        <a href="{% url 'registro' %}">Registro</a>
+    {% else %}
+        <!--CABECERA-->
+        <header>
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <div class="container d-flex justify-content-between"">
+                <h1 class="navbar-brand titulo">FAMFEED</h1>
+            </div>
+            </nav>
+        </header>
+        <!--MENU-->
+        <section>
+            <div class="menu">
+                <div class="izquierda"><a href="{% url 'crearTablon' %}">Crear Nuevo Tablón</a></div>
+                <div class="derecha"><a href="#" onclick="toggleDivVisibility()">Usuario</a></div>
+                <div id="usuarioDiv" style="display: none;">
+                    <div>
+                        <h4>Nombre:</h4>
+                        <p>{{ user.username }}</p>
+                    </div>
+                    <div>
+                        <h4>Correo:</h4>
+                        <p>{{ user.email }}</p>
+                    </div>                
+                    <!-- <input type="button" value="Cambiar Contraseña" class="btnUsuario">
+                    <input type="button" value="LOGOUT" class="btnUsuario"> -->
+                    <a href="{% url 'logout' %}">Cerrar sesión</a>
+                </div>
+            </div>
+        </section>
+
+
+        <main>
+            <h1 class="mb-4">Mis Tablones</h1>
+            <div class="grid-container">
+                {% for tablon in tablones %}
+                <div class="grid-item">
+                    <a href="{% url 'detalle' tablon.id %}">
+                        <img src="/media/{{ tablon.imagen }}" alt="imagen">
+                        <h4 class="tituloTablon">Nombre del tablón: {{ tablon.nombre }}</h4>
+                        <p class="creadorTablon">Creador: {{ tablon.creador.username }}</p>
+                        <!-- Puedes acceder a otros atributos del tablón aquí -->
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </main>
+    {% endif %}
+
+    <!--JAVASCRIPT-->
+    <script>
+        function toggleDivVisibility() {
+          var usuarioDiv = document.getElementById("usuarioDiv");
+          if (usuarioDiv.style.display === "none") {
+            usuarioDiv.style.display = "block";
+          } else {
+            usuarioDiv.style.display = "none";
+          }
+        }
+    </script>
+</body>
+
+</html> 
