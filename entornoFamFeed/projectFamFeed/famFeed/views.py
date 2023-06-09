@@ -93,3 +93,13 @@ class RecuerdoCreateView(LoginRequiredMixin, CreateView):
         form.instance.tablon_id = tablon_id 
         recuerdo = form.save()
         return super().form_valid(form)
+    
+class RecuerdoDetailView(LoginRequiredMixin, DetailView):
+    model = Recuerdo
+    context_object_name = 'recuerdo'
+    login_url = 'cuentas/login'
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        tablon = self.get_object()
+        #context['comentarios'] = recuerdo.comentarios.all()
+        return context

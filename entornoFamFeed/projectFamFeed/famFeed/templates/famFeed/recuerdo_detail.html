@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.7.0/dist/css/bootstrap.min.css">
+    <title>Recuerdo Famfeed</title>
+    <style>
+        /*------------------------------------------------------------*/
+        /*GLOBALES*/
+        :root{
+            --fuente:'Montserrat', sans-serif;
+            --blanco:#ffffff;
+            --gris: #e1e1e1;
+            --negro: #000000;
+            --basico: #FCF2EA;
+            --primario:#FF9126;
+            --secundario:#AAD7D5; 
+            --primarioOscuro:#DB5933;
+            --secundarioOscuro:#58A9A2;
+            
+        }
+        html{
+            box-sizing: border-box;
+            font-size: 62.5%;
+            width: 100%;
+            height: 100%;
+        }
+        *, *:before, *:after{
+            box-sizing: inherit;
+        }
+        body{
+            font-family: var(--fuente);
+            font-size: 1.6rem;
+            line-height: 2;
+            margin:0px;
+            background-color: var(--basico);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+        /*------------------------------------------------------------*/
+        /*CABECERA*/
+
+        header{
+            height: 20rem;
+            background-color: var(--secundario);
+        }
+        .titulo{
+            margin-top: 0;
+            color: var(--primario);
+            font-size: 10rem;
+            font-weight: lighter; 
+            text-align: center;
+        }
+        /*------------------------------------------------------------*/
+        /*CUERPO*/
+        h1{
+            color: var(--secundarioOscuro);
+            font-size: 50px;
+        }
+        p{
+            color: var(--negro);
+            font-size: 20px;
+        }
+        label{
+        font-size: 23px;
+        font-weight: bold;
+        text-decoration: underline;
+        }
+
+        input{
+        color: var(--secundarioOscuro);
+        margin: 1rem;
+        padding: 20px;
+        width: 50rem;
+        border: 0 solid ;
+        border-radius: 20px;
+        font-size: 20px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        .btnComentario{
+        background-color: var(--primarioOscuro);
+        width: 25rem;
+        color: var(--basico);
+        margin-bottom: 5rem;
+        }
+
+        hr{
+        width: 90%;
+        margin: 5rem;
+        }
+        ul{
+        list-style: none;
+        margin-bottom: 5rem;
+        }
+        li{
+        font-style: italic;
+        margin: 20px;
+        }
+
+        h2{
+        text-decoration: underline;
+        }
+
+        /*------------------------------------------------------------*/
+        /*PIE DE PAGINA*/
+        footer{
+            margin-top: auto;
+            width: 100%;
+            height: 5rem;
+            background-color: var(--secundario);
+            
+        }
+    </style>
+</head>
+<body>
+    
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+          <div class="container">
+            <h1 class="navbar-brand titulo">FAMFEED</h1>
+          </div>
+        </nav>
+    </header>
+
+    <main>
+        <h1>{{ recuerdo.titulo }}</h1>
+        <p>
+            <img src="/media/{{ recuerdo.imagenRecuerdo }}" alt="imagen">
+        </p>
+        <div>
+            <p>{{ recuerdo.texto }}</p>
+        </div>
+        <br>
+        
+        
+        <hr>
+        <div>
+            <h2>Comentarios</h2>
+                <ul>
+                    <li>"Una película emocionante y llena de acción. ¡No pude apartar la vista de la pantalla!"</li>
+                    <li>"Este restaurante ofrece una excelente comida y un servicio amable. ¡Definitivamente lo recomendaría!"</li>
+                </ul>
+        </div>
+        <div>
+            <label for="comentario">Añade un Comentario</label><br><br>
+            <input type="text" id="comentario" class="comentario"><br><br>      
+            <input type="submit" value="Nuevo Comentario" class="btnComentario">
+        </div>
+    </main>
+
+</body>
+
+</html> 

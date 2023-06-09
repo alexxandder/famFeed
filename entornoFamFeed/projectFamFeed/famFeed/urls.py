@@ -9,4 +9,5 @@ urlpatterns = [
     path('detalle/<int:pk>', TablonDetailView.as_view(), name='detalle'),
     path('agregarUsuarioTablon/<int:pk>', views.AgregarUsuarioTablonView.as_view(), name='agregarUsuarioTablon'),
     path('crearRecuerdo/<int:pk>', RecuerdoCreateView.as_view(), name='crearRecuerdo'),
+    path('detalleRecuerdo/<int:pk>', RecuerdoDetailView.as_view(), name='detalleRecuerdo'),
 ]

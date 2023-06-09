@@ -239,7 +239,7 @@
         <div class="grid-container">
             {% for recuerdo in recuerdos %}
                 <div class="grid-item">
-                    <a href="">
+                    <a href="{% url 'detalleRecuerdo' recuerdo.id %}">
                         <img src="/media/{{ recuerdo.imagenRecuerdo }}" alt="imagen">
                         <h4 class="tituloTablon">Nombre del recuerdo: {{ recuerdo.titulo }}</h4>
                         <p class="creadorTablon">Autor: {{ recuerdo.autor.username }}</p>
