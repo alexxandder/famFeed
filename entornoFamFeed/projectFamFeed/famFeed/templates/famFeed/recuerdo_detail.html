@@ -121,7 +121,7 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
           <div class="container">
-            <h1 class="navbar-brand titulo">FAMFEED</h1>
+            <h1 class="navbar-brand "><a href="{% url 'principal' %}" class="titulo">FAMFEED</a></h1>
           </div>
         </nav>
     </header>
@@ -141,14 +141,19 @@
         <div>
             <h2>Comentarios</h2>
                 <ul>
-                    <li>"Una película emocionante y llena de acción. ¡No pude apartar la vista de la pantalla!"</li>
-                    <li>"Este restaurante ofrece una excelente comida y un servicio amable. ¡Definitivamente lo recomendaría!"</li>
+                    {% for comentario in comentarios %}
+                    <li>{{ comentario.cuerpo }} -- {{ comentario.autor }}</li>
+                    {% endfor %}
                 </ul>
         </div>
         <div>
-            <label for="comentario">Añade un Comentario</label><br><br>
-            <input type="text" id="comentario" class="comentario"><br><br>      
-            <input type="submit" value="Nuevo Comentario" class="btnComentario">
+            <div id="comentario-form-container">
+                <form method="post">
+                    {% csrf_token %}
+                    {{ comentario_form.as_p }}
+                    <button type="submit">Añadir comentario</button>
+                </form>
+            </div>
         </div>
     </main>
 

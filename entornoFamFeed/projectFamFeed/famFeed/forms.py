@@ -1,5 +1,13 @@
 from django import forms
-from .models import Tablon, Recuerdo
+from .models import *
+
+class newComentarioForm(forms.ModelForm):
+    class Meta:
+        model = Comentario
+        fields = ['cuerpo']
+        labels = {
+            'cuerpo': 'Comentario',
+        }
 
 class newTablonForm(forms.ModelForm):
     class Meta :

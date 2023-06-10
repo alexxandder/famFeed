@@ -98,8 +98,22 @@ class RecuerdoDetailView(LoginRequiredMixin, DetailView):
     model = Recuerdo
     context_object_name = 'recuerdo'
     login_url = 'cuentas/login'
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        tablon = self.get_object()
-        #context['comentarios'] = recuerdo.comentarios.all()
+        recuerdo = self.get_object()
+        context['comentarios'] = recuerdo.comentarios.all()
+        context['comentario_form'] = newComentarioForm()
         return context
+    
+    def post(self, request, *args, **kwargs):
+        recuerdo = self.get_object()
+        comentario_form = newComentarioForm(request.POST)
+
+        if comentario_form.is_valid():
+            comentario = comentario_form.save(commit=False)
+            comentario.recuerdo = recuerdo
+            comentario.autor = request.user
+            comentario.save()
+        
+        return redirect('detalleRecuerdo', pk=recuerdo.pk)

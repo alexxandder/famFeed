@@ -22,3 +22,12 @@ class Recuerdo(models.Model):
     class Meta:
         verbose_name = 'recuerdo'
         verbose_name_plural = 'recuerdos'
+
+class Comentario(models.Model):
+    cuerpo = models.CharField(max_length=50)
+    autor = models.ForeignKey(User, verbose_name='autor', on_delete=models.CASCADE)
+    recuerdo = models.ForeignKey(Recuerdo, related_name='comentarios',on_delete=models.CASCADE)
+
+    class Meta:
+        verbose_name = 'comentario'
+        verbose_name_plural = 'comentario'
