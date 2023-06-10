@@ -140,11 +140,20 @@
         <hr>
         <div>
             <h2>Comentarios</h2>
-                <ul>
-                    {% for comentario in comentarios %}
-                    <li>{{ comentario.cuerpo }} -- {{ comentario.autor }}</li>
-                    {% endfor %}
-                </ul>
+            <ul>
+                {% for comentario in comentarios %}
+                <li>{{ comentario.cuerpo }} -- {{ comentario.autor }}
+                    {% if comentario.autor.id == request.user.id %}
+                        <form method="POST" action="{% url 'eliminarComentario' comentario.id %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="comentario_id" value="{{ comentario.id }}">
+                            <button type="submit">Eliminar</button>
+                        </form>
+                    {% endif %}
+                </li>
+                    
+                {% endfor %}
+            </ul>
         </div>
         <div>
             <div id="comentario-form-container">

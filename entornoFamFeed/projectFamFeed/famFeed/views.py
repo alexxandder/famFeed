@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, get_object_or_404
 from django.contrib.auth import logout
 from django.urls import reverse_lazy
+from django.views import View
 from django.views.decorators.cache import never_cache
 from .models import *
 from .forms import *
@@ -117,3 +118,14 @@ class RecuerdoDetailView(LoginRequiredMixin, DetailView):
             comentario.save()
         
         return redirect('detalleRecuerdo', pk=recuerdo.pk)
+
+class EliminarComentarioView(View):
+    def post(self, request, comentario_id):
+        comentario = get_object_or_404(Comentario, id=comentario_id)
+        
+        # Verificar si el usuario actual es el autor del comentario
+        if comentario.autor == request.user:
+            comentario.delete()
+        
+        # Redireccionar a la página de detalle del recuerdo
+        return redirect('detalleRecuerdo', pk=comentario.recuerdo.id)

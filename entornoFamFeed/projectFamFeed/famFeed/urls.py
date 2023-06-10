@@ -10,4 +10,5 @@ urlpatterns = [
     path('agregarUsuarioTablon/<int:pk>', views.AgregarUsuarioTablonView.as_view(), name='agregarUsuarioTablon'),
     path('crearRecuerdo/<int:pk>', RecuerdoCreateView.as_view(), name='crearRecuerdo'),
     path('detalleRecuerdo/<int:pk>', RecuerdoDetailView.as_view(), name='detalleRecuerdo'),
+    path('eliminarComentario/<int:comentario_id>/', EliminarComentarioView.as_view(), name='eliminarComentario'),
 ]
