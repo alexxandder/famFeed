@@ -123,6 +123,7 @@
         <div class="container mt-5">
             <h1 class="mb-4">Registro</h1>
             <div>
+                <a href="{% url 'login' %}">Volver a login</a>
                 <form action="" method="POST">                   
                     {% csrf_token %}
                     {% for field in form %}
