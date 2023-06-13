@@ -60,12 +60,18 @@
         h1{
             color: var(--secundarioOscuro);
             font-size: 50px;
+            margin:0;
         }  
+        .usuario{
+            font-size: 30px;
+        }
         label{
             color: var(--secundarioOscuro);
             font-size: 25px;
         }
-
+        a{
+            text-decoration: none;
+        }
         input{
             color: var(--secundarioOscuro);
             margin: 1rem;
@@ -76,7 +82,7 @@
             font-size: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
-        .login{
+        button{
             background-color: var(--primarioOscuro);
             color: var(--basico);
             border: 0px solid var(--secundario);
@@ -111,11 +117,13 @@
     <main>
         <div class="container mt-5">
             <div>
-                <h1>Agregar Usuario al Tablón "{{ tablon.nombre }}"</h1>
+                <h1 class="usuario">Agregar Usuario al Tablón "{{ tablon.nombre }}"</h1><br>
                 <form method="POST" action="{% url 'agregarUsuarioTablon' pk=tablon.id %}">
                     {% csrf_token %}
                     <label for="id_nombre">Nombre de Usuario:</label>
+                    <br>
                     <input type="text" id="id_nombre" name="nombre" required>
+                    <br><br>
                     <button type="submit">Agregar Usuario</button>
                 </form>
             </div>

@@ -79,9 +79,9 @@ WSGI_APPLICATION = 'projectFamFeed.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'famFeed',
-        'USER': 'famFeed',
-        'PASSWORD': 'famFeed',
+        'NAME': 'famFeedFinal',
+        'USER': 'famFeedFinal',
+        'PASSWORD': 'famFeedFinal',
         'HOST': 'localhost',
         'PORT': '3306',
     }

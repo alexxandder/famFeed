@@ -78,7 +78,7 @@
             position: absolute; /* Posición absoluta para aparecer debajo */
             top: 26rem; /* Espacio desde la parte superior */
             right: 0; /* Alineación a la izquierda */
-            width: 20rem; /* Ancho del div */
+            width: 25rem; /* Ancho del div */
             padding: 10px; /* Espacio interno */
             box-sizing: border-box; /* Incluir el padding en el ancho total */
             color: var(--primarioOscuro);
@@ -91,6 +91,13 @@
             color: var(--primarioOscuro);
             text-transform: uppercase;
         } 
+        .sesion{
+            color: var(--basico);
+            font-size: 20px;
+            background-color: var(--primarioOscuro);
+            padding: 5px;
+            border-radius: 50px;
+        }
         /*------------------------------------------------------------*/
         /*CUERPO*/
         .grid-container {
@@ -222,7 +229,7 @@
                     <h4>Correo:</h4>
                     <p>{{ user.email }}</p>
                 </div>               
-                <a href="{% url 'logout' %}">Cerrar sesión</a>
+                <a href="{% url 'logout' %}" class="sesion">Cerrar sesión</a>
               </div>
           </div>
           </div>

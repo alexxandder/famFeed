@@ -84,6 +84,7 @@
         }
         input{
             color: var(--secundarioOscuro);
+            font-family: Montserrat;
             margin: 1rem;
             padding: 20px;
             width: 50rem;
@@ -92,7 +93,7 @@
             font-size: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
         }
-        .login{
+        button{
             background-color: var(--primarioOscuro);
             color: var(--basico);
             border: 0px solid var(--secundario);
@@ -100,6 +101,7 @@
             font-family: var(--fuente);
             text-transform: uppercase;
             width: 20rem;
+            height: 5rem;
             font-size: 20px;
         }
         a{
@@ -124,15 +126,19 @@
             <h1 class="mb-4">Registro</h1>
             <div>
                 <a href="{% url 'login' %}">Volver a login</a>
+                <br><br>
                 <form action="" method="POST">                   
                     {% csrf_token %}
                     {% for field in form %}
                         <div>
                         {{ field.label_tag }}
+                        <br>
                         {{ field }}
                         </div>
                     {% endfor %}
-                    <button type="submit">Registrar</button>
+                    <br>
+                    <button type="submit" class="login">Registrar</button>
+                    <br><br>
                 </form>
             </div>
         </div>

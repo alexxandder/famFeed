@@ -85,6 +85,7 @@
         }
         input{
             color: var(--secundarioOscuro);
+            font-family: Montserrat;
             margin: 1rem;
             padding: 20px;
             width: 50rem;
@@ -128,17 +129,18 @@
             <div>
                 <form method="post" action="">
                     {% csrf_token %}
-                    <label for="username">Username:</label>
+                    <label for="username">Username:</label><br>
                     <input type="text" id="username" name="username" required>
                     <br>
-                    <label for="password">Password:</label>
+                    <label for="password">Password:</label><br>
                     <input type="password" id="password" name="password" required>
-                    <br>
-                    <input type="submit" value="Login">
+                    <br><br>
+                    <input type="submit" class="login" value="Login">
                 </form>
                     <br><br>
 
                     <label>¿No estás registrado? <span><a href="{% url 'registro' %}">REGÍSTRATE</a></span></label>
+                    <br><br>
             </div>
             
         </div>

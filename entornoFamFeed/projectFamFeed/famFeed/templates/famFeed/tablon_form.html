@@ -48,18 +48,19 @@
             height: 20rem;
             background-color: var(--secundario);
         }
-        .titulo{
-            margin-top: 0;
+        a.titulo{
             color: var(--primario);
             font-size: 10rem;
             font-weight: lighter; 
             text-align: center;
+            text-decoration: none;
         }
         /*------------------------------------------------------------*/
         /*CUERPO*/
         h1{
             color: var(--secundarioOscuro);
             font-size: 50px;
+            margin:0;
         }  
         label{
             color: var(--secundarioOscuro);
@@ -67,6 +68,7 @@
         }
 
         input{
+            font-family: var(--fuente);
             color: var(--secundarioOscuro);
             margin: 1rem;
             padding: 20px;
@@ -86,7 +88,7 @@
             width: 30rem;
             font-size: 20px;
         }
-        .login{
+        button{
             background-color: var(--primarioOscuro);
             color: var(--basico);
             border: 0px solid var(--secundario);
@@ -94,6 +96,7 @@
             font-family: var(--fuente);
             text-transform: uppercase;
             width: 20rem;
+            height: 5rem;
             font-size: 20px;
         }
         /*------------------------------------------------------------*/
@@ -124,8 +127,19 @@
         <div>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Crear</button>
+                {% for field in form %}
+                <div class="form-field">
+                    {{ field.label_tag }}
+                    <br>
+                    {{ field }}
+                </div>
+                <br>
+                {% endfor %}
+                <!-- {% csrf_token %}
+                {{ form.as_p }} -->
+                <br>
+                <button type="submit" >Crear</button>
+                <br><br>
             </form>
         </div>
         

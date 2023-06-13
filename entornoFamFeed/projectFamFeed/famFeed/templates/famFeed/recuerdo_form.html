@@ -60,6 +60,7 @@
         h1{
             color: var(--secundarioOscuro);
             font-size: 50px;
+            margin:0;
         }  
         label{
             color: var(--secundarioOscuro);
@@ -86,7 +87,7 @@
             width: 30rem;
             font-size: 20px;
         }
-        .login{
+        button{
             background-color: var(--primarioOscuro);
             color: var(--basico);
             border: 0px solid var(--secundario);
@@ -105,6 +106,12 @@
             border-radius: 20px;
             font-size: 20px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        a{
+            text-decoration: none;
+        }
+        form{
+            display:block;
         }
         /*------------------------------------------------------------*/
         /*PIE DE PAGINA*/
@@ -134,8 +141,19 @@
         <div>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
-                {{ form.as_p }}
+                {% for field in form %}
+                <div class="form-field">
+                    {{ field.label_tag }}
+                    <br>
+                    {{ field }}
+                </div>
+                {% endfor %}
+                
+                <!-- {% csrf_token %}
+                {{ form.as_p }} -->
+                <br>
                 <button type="submit">Crear Recuerdo</button>
+                <br><br>
             </form>
         </div>
     </main>
