@@ -74,9 +74,11 @@
         font-weight: bold;
         }
         .texto{
-            width: 80%;
-            margin-left:12rem;
-            text-align: justify;
+            align-items: center;
+            justify-content: center;
+            display: flexbox;
+            padding-left: 50px;
+            padding-right: 50px;
         }
         input{
         color: var(--secundarioOscuro);
@@ -135,6 +137,9 @@
             background-color: var(--secundario);
             
         }
+        img{
+            max-width: 60%;
+        }
     </style>
 </head>
 <body>
@@ -153,7 +158,7 @@
             <img src="/media/{{ recuerdo.imagenRecuerdo }}" alt="imagen">
         </p>
         <div class="texto">
-            <p>{{ recuerdo.texto }}</p>
+            <p class="parrafo">{{ recuerdo.texto }}</p>
         </div>
         <br>
         
